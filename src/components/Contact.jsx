@@ -1,7 +1,43 @@
-import React from "react";
-import GitImg from '../assets/github-icon.svg'
+import React, { useRef, useState } from "react";
+import GitImg from "../assets/github-icon.svg";
+import emailjs from "@emailjs/browser";
+import Header from "./Header";
 
 function Contact() {
+  const form = useRef();
+  const [formData, setFormData] = useState({
+    from_name: "",
+    email: "",
+    message: "",
+  });
+
+  function changeHandler(event) {
+    setFormData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  }
+
+  function submitHandler(event) {
+    event.preventDefault();
+    // console.log(formData);
+    emailjs
+      .sendForm(
+        "service_wyhxgic",
+        "template_z4q45xd",
+        form.current,
+        "75pU_gFsKjWgiczC0"
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+        },
+        (error) => {
+          console.log("FAILED...", error);
+        }
+      );
+  }
+
   return (
     <div className="flex flex-col items-center w-full h-[600px] bg-[#242424] py-14">
       <div className="flex w-8/12 h-[550px] border-b-2">
@@ -16,26 +52,41 @@ function Contact() {
         </div>
         <div className="flex w-1/2 justify-end">
           <div className="w-4/6">
-            <input
-              type="text"
-              placeholder="Name"
-              className="w-full text-xl outline-none border-b-2 bg-[#242424] px-2 mb-8 focus:border-[#6C1BF0]"
-            />
-            <input type="email" name="" placeholder="Email"
+            <form ref={form} onSubmit={submitHandler}>
+              <input
+                type="text"
+                placeholder="Name"
                 className="w-full text-xl outline-none border-b-2 bg-[#242424] px-2 mb-8 focus:border-[#6C1BF0]"
-            />
-            <textarea 
-            placeholder="Message"
+                name="from_name"
+                value={formData.from_name}
+                onChange={changeHandler}
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="w-full text-xl outline-none border-b-2 bg-[#242424] px-2 mb-8 focus:border-[#6C1BF0]"
+                value={formData.email}
+                onChange={changeHandler}
+              />
+              <textarea
+                placeholder="Message"
+                name="message"
                 className="w-full text-xl h-2/4 outline-none border-b-2 bg-[#242424] px-2 mb-8 resize-none focus:border-[#6C1BF0]"
-            />
-            <button className="flex underline underline-offset-8 decoration-[#6C1BF0] w-full justify-end">SEND MESSAGE</button>
+                value={formData.message}
+                onChange={changeHandler}
+              />
+              <button
+                className="flex underline underline-offset-8 decoration-[#6C1BF0] w-full justify-end"
+                onClick={submitHandler}
+              >
+                SEND MESSAGE
+              </button>
+            </form>
           </div>
         </div>
       </div>
-      <div className='flex items-center justify-between w-8/12 mt-3'>
-        <p className='text-[#ffffff] text-2xl font-extrabold'>abhishekarya</p>
-            <img src={GitImg} alt="github icon" /> 
-    </div>
+      <Header />
     </div>
   );
 }

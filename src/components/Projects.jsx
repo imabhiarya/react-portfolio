@@ -8,10 +8,6 @@ function Projects() {
     <div className='w-8/12 mt-40 mb-14'>
         <h1 className='text-7xl font-bold pb-10 underline underline-offset-8 decoration-[#6C1BF0]'>Projects</h1>
         <div className='flex w-full justify-center gap-5 flex-wrap '>
-        {/* <Project data = {data.todo} /> 
-        <Project data = {data.gallery} />
-        <Project data = {data.weather} />
-        <Project data = {data.todo} /> */}
 
         <NewProject data={data.todo} />
         <NewProject data={data.gallery} />

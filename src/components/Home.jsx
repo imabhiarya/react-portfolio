@@ -2,9 +2,11 @@ import React from 'react'
 import myImg from '../assets/abhishek.png'
 import ovalImg from '../assets/Oval.svg'
 import bgLogoImg from '../assets/bg-img.svg'
+import Contact from './Contact'
 
 
 function Home() {
+
   return (
     <div className='flex w-8/12 my-10 border-b-2'>
         <div className='w-6/12 mt-8'>

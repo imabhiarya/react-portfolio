@@ -10,7 +10,7 @@ function Skills() {
         </div>
         <div>
             <p className='text-4xl font-semibold'>Backend</p>
-            <p className='underline underline-offset-8 decoration-[#6C1BF0]'>20+ hours of experience</p>
+            <p className='underline underline-offset-8 decoration-[#6C1BF0]'>1 Year of experience</p>
         </div>
         <div>
             <p className='text-4xl font-semibold w-full'>Java</p>
